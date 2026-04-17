@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>期末專案</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="css/mycss01 (2).css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .hero-section { background: #fdf5f2; padding: 60px 0; }
+        .cake-card img { height: 250px; object-fit: cover; }
+        .chef-img { height: 400px; object-fit: cover; border-radius: 15px; }
+        footer { background: #333; color: white; padding: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navbar 導覽列 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🍰 Sweet Time</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">公司介紹</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">產品介紹</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">顧客回饋</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer">關於我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. 公司介紹 (Hero) -->
+    <section id="about" class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">堅持手作的純粹滋味</h1>
+            <p class="lead text-muted">自 1998 年起，我們選用最頂级的食材，為您的每一份喜悅加分。</p>
+            <img src="images/蛋糕師傅B.png" class="img-fluid chef-img mt-4" alt="師傅工作照">
+            <p class="mt-3"><i>我們的首席主廚正在精心裝飾節日限定蛋糕</i></p>
+        </div>
+    </section>
+
+    <!-- 3. 產品介紹 -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">精選蛋糕</h2>
+            <div class="row g-4">
+                <!-- 蛋糕 1 -->
+                <div class="col-md-4">
+                    <div class="card cake-card h-100 shadow-sm">
+                        <img src="images/巧克力蛋糕.png" class="card-img-top" alt="巧克力蛋糕">
+                        <div class="card-body">
+                            <h5 class="card-title">草莓巧克力混合風</h5>
+                            <p class="card-text text-muted">採用 70% 苦甜巧克力，口感紮實層次豐富。</p>
+                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 蛋糕 2 -->
+                <div class="col-md-4">
+                    <div class="card cake-card h-100 shadow-sm">
+                        <img src="images/草莓蛋糕.png" class="card-img-top" alt="草莓蛋糕">
+                        <div class="card-body">
+                            <h5 class="card-title">法式草莓鮮奶油</h5>
+                            <p class="card-text text-muted">當季大湖草莓搭配輕盈鮮奶油，入口即化。</p>
+                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 蛋糕 3 -->
+                <div class="col-md-4">
+                    <div class="card cake-card h-100 shadow-sm">
+                        <img src="images/藍莓蛋糕.png" class="card-img-top" alt="藍莓蛋糕">
+                        <div class="card-body">
+                            <h5 class="card-title">酸甜藍莓蛋糕</h5>
+                            <p class="card-text text-muted">新鮮藍莓果醬與栗子泥的完美結合。</p>
+                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 顧客回饋 -->
+    <!-- <section id="reviews" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="mb-5">顧客怎麼說</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <p class="mb-2">"這是我吃過最好吃的草莓蛋糕，口感非常細緻，奶油完全不會油膩，下次還會再來買"</p>
+                        <footer class="blockquote-footer">林小姐</footer>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <p class="mb-2">"送貨速度很快，包裝也非常完整，送貨的陳大偉先生態度親切。"</p>
+                        <footer class="blockquote-footer">張先生</footer>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <p class="mb-2">"巧克力味道很濃但不甜膩，大人小孩都很喜歡，只是下單的網頁操作卡住過幾次才成功下單，若是能改善會更好。"</p>
+                        <footer class="blockquote-footer">王媽媽</footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section id="reviews" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-5">顧客怎麼說</h2>
+        <div class="row justify-content-center"> <!-- 讓內容置中 -->
+            <div class="col-md-3 mb-4"> <!-- 將 col-md-4 改成 3，格子會變窄一點 -->
+                <div class="p-3 bg-white rounded shadow-sm"> <!-- p-4 改成 p-3 -->
+                    <p class="mb-1 small text-dark">"這是我吃過最好吃的草莓蛋糕，口感非常細緻，奶油完全不會油膩，下次還會再來買"</p>
+                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">林小姐</footer>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <p class="mb-1 small text-dark">"送貨速度很快，包裝也非常完整，送貨的陳大偉先生態度親切。"</p>
+                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">張先生</footer>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <p class="mb-1 small text-dark">"蛋糕很好吃，只是下單的網頁操作卡住過幾次才成功下單，若是能改善會更好。"</p>
+                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">王媽媽</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- 5. Footer 公司資訊 & 地圖 -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h5 class="mb-3">Sweet Time 甜點工作室</h5>
+                    <p>📍 地址：台北市永和區 123 號</p>
+                    <p>📞 電話：(02) 2345-6789</p>
+                    <p>✉️ 信箱：service@sweettime.com</p>
+                    <p>🕒 營業時間：週一至週日 11:00 - 20:00</p>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Google Map 嵌入 (範例位置) -->
+                    <div class="ratio ratio-16x9">   
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14463.116567928604!2d121.50367036906769!3d25.00761959147419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9c2a0416b75%3A0x68f25a2cb5b9e3a4!2zMjM05paw5YyX5biC5rC45ZKM5Yy6!5e0!3m2!1szh-CN!2stw!4v1776394220709!5m2!1szh-CN!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 border-secondary">
+            <p class="text-center mb-0">© 2024 Sweet Time. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 引入 Bootstrap JS (導覽列折疊功能需要) -->
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>
