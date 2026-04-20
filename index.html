@@ -3,167 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>期末專案</title>
-    <!-- 引入 Bootstrap CSS -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <link rel="stylesheet" href="css/mycss01 (2).css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Sweet Time 甜點工作室</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        .hero-section { background: #fdf5f2; padding: 60px 0; }
-        .cake-card img { height: 250px; object-fit: cover; }
-        .chef-img { height: 400px; object-fit: cover; border-radius: 15px; }
-        footer { background: #333; color: white; padding: 40px 0; }
+        /* ===== 全域設定 ===== */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #2c2c2a;
+            background: #fff;
+        }
+
+        /* ===== 導覽列 ===== */
+        .navbar {
+            background: rgba(255,255,255,0.97) !important;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0e8e3;
+        }
+        .navbar-brand {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.25rem;
+            color: #c4522a !important;
+            letter-spacing: 0.05em;
+        }
+        .nav-link {
+            color: #555 !important;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: #c4522a !important; }
+
+        /* ===== Hero 區 ===== */
+        .hero-section {
+            background: linear-gradient(160deg, #fdf5f0 0%, #fce9df 100%);
+            padding: 80px 0 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 360px; height: 360px;
+            border-radius: 50%;
+            background: rgba(215,100,60,0.06);
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            background: rgba(215,100,60,0.05);
+        }
+        .hero-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: #1e1a18;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #7a6a62;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .hero-chef-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f5e3d9;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            position: relative;
+        }
+        .hero-chef-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #c4522a;
+            color: white;
+            font-size: 0.78rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.2rem;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(196,82,42,0.15);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #c4522a;
+        }
+        .stat-label {
+            font-size: 0.78rem;
+            color: #9a8a82;
+            margin-top: 2px;
+        }
+
+        /* ===== 產品區 ===== */
+        #products { padding: 80px 0; }
+        .section-eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            color: #c4522a;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #1e1a18;
+        }
+        .cake-card {
+            border: 1px solid #f0e5de !important;
+            border-radius: 16px !important;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cake-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(196,82,42,0.12) !important;
+        }
+        .cake-img {
+            height: 230px;
+            object-fit: cover;
+            background: #f5e8e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+        }
+        .cake-img img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .cake-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            background: #fdf0eb;
+            color: #c4522a;
+            border: 1px solid rgba(196,82,42,0.2);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 0.6rem;
+        }
+        .cake-price {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            color: #c4522a;
+            font-weight: 600;
+        }
+        .star-row { color: #e8a030; font-size: 0.8rem; letter-spacing: 2px; }
+        .btn-cart {
+            background: #c4522a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            padding: 10px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        .btn-cart:hover { background: #a33e1e; color: white; }
+
+        /* ===== 顧客回饋 ===== */
+        #reviews {
+            background: #fdf8f5;
+            padding: 80px 0;
+            border-top: 1px solid #f0e5de;
+            border-bottom: 1px solid #f0e5de;
+        }
+        .review-card {
+            background: white;
+            border: 1px solid #f0e5de;
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: box-shadow 0.2s;
+        }
+        .review-card:hover {
+            box-shadow: 0 8px 24px rgba(196,82,42,0.08);
+        }
+        .review-quote {
+            font-size: 2.5rem;
+            color: #f0c4b0;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: Georgia, serif;
+        }
+        .review-text {
+            font-size: 0.92rem;
+            color: #4a3e38;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .reviewer-avatar {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 500;
+            flex-shrink: 0;
+        }
+        .reviewer-name { font-size: 0.9rem; font-weight: 500; color: #2c2c2a; }
+        .reviewer-date { font-size: 0.78rem; color: #aaa; }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #1e1a18;
+            color: #c8bdb8;
+            padding: 56px 0 32px;
+        }
+        footer h5 {
+            font-family: 'Noto Serif TC', serif;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+        .footer-info-item {
+            font-size: 0.88rem;
+            color: #a09590;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .footer-info-item span.icon { flex-shrink: 0; }
+        .social-btn {
+            display: inline-block;
+            background: #2c2824;
+            color: #c8bdb8;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            text-decoration: none;
+            border: 1px solid #3a3430;
+            transition: background 0.2s, color 0.2s;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .social-btn:hover { background: #c4522a; color: white; border-color: #c4522a; }
+        .map-wrap {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #3a3430;
+        }
+        footer hr { border-color: #3a3430; margin: 2rem 0 1.2rem; }
+        footer .copyright { font-size: 0.82rem; color: #6a6460; text-align: center; }
+
+        /* ===== 動畫 ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeUp 0.6s ease both; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* ===== 響應式 ===== */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.9rem; }
+            .hero-chef-wrap { height: 260px; margin-top: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 1. Navbar 導覽列 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">🍰 Sweet Time</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">公司介紹</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">產品介紹</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#reviews">顧客回饋</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#footer">關於我們</a></li>
-                </ul>
-            </div>
+<!-- ===== 1. 導覽列 ===== -->
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">🍰 Sweet Time</a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="#about">公司介紹</a></li>
+                <li class="nav-item"><a class="nav-link" href="#products">產品介紹</a></li>
+                <li class="nav-item"><a class="nav-link" href="#reviews">顧客回饋</a></li>
+                <li class="nav-item"><a class="nav-link" href="#footer">關於我們</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- 2. 公司介紹 (Hero) -->
-    <section id="about" class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold">堅持手作的純粹滋味</h1>
-            <p class="lead text-muted">自 1998 年起，我們選用最頂级的食材，為您的每一份喜悅加分。</p>
-            <img src="images/蛋糕師傅B.png" class="img-fluid chef-img mt-4" alt="師傅工作照">
-            <p class="mt-3"><i>我們的首席主廚正在精心裝飾節日限定蛋糕</i></p>
-        </div>
-    </section>
-
-    <!-- 3. 產品介紹 -->
-    <section id="products" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">精選蛋糕</h2>
-            <div class="row g-4">
-                <!-- 蛋糕 1 -->
-                <div class="col-md-4">
-                    <div class="card cake-card h-100 shadow-sm">
-                        <img src="images/巧克力蛋糕.png" class="card-img-top" alt="巧克力蛋糕">
-                        <div class="card-body">
-                            <h5 class="card-title">草莓巧克力混合風</h5>
-                            <p class="card-text text-muted">採用 70% 苦甜巧克力，口感紮實層次豐富。</p>
-                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+<!-- ===== 2. 公司介紹 (Hero) ===== -->
+<section id="about" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- 文字區 -->
+            <div class="col-lg-6">
+                <div class="fade-up">
+                    <span class="hero-badge">Since 1998</span>
+                </div>
+                <h1 class="hero-title fade-up delay-1">
+                    堅持手作<br>的純粹滋味
+                </h1>
+                <p class="hero-subtitle mt-3 fade-up delay-2">
+                    自 1998 年起，我們選用最頂級的食材，<br>
+                    每一塊蛋糕都是師傅對品質的承諾，<br>
+                    為您的每一份喜悅加分。
+                </p>
+                <!-- 數據統計 -->
+                <div class="row g-3 mt-2 fade-up delay-3">
+                    <div class="col-4">
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">年傳承</div>
                         </div>
                     </div>
-                </div>
-                <!-- 蛋糕 2 -->
-                <div class="col-md-4">
-                    <div class="card cake-card h-100 shadow-sm">
-                        <img src="images/草莓蛋糕.png" class="card-img-top" alt="草莓蛋糕">
-                        <div class="card-body">
-                            <h5 class="card-title">法式草莓鮮奶油</h5>
-                            <p class="card-text text-muted">當季大湖草莓搭配輕盈鮮奶油，入口即化。</p>
-                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+                    <div class="col-4">
+                        <div class="stat-item">
+                            <div class="stat-number">10萬+</div>
+                            <div class="stat-label">幸福客戶</div>
                         </div>
                     </div>
-                </div>
-                <!-- 蛋糕 3 -->
-                <div class="col-md-4">
-                    <div class="card cake-card h-100 shadow-sm">
-                        <img src="images/藍莓蛋糕.png" class="card-img-top" alt="藍莓蛋糕">
-                        <div class="card-body">
-                            <h5 class="card-title">酸甜藍莓蛋糕</h5>
-                            <p class="card-text text-muted">新鮮藍莓果醬與栗子泥的完美結合。</p>
-                            <button class="btn btn-outline-danger w-100">加入購物車</button>
+                    <div class="col-4">
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">天然食材</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <!-- 輪播廣告區 -->
+            <div class="col-lg-6 fade-up delay-2">
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500" style="border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(196,82,42,0.15);">
+                    <div class="carousel-indicators" style="bottom:12px;">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" style="background:#c4522a;width:8px;height:8px;border-radius:50%;border:none;opacity:1;"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" style="background:#c4522a;width:8px;height:8px;border-radius:50%;border:none;opacity:0.4;"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" style="background:#c4522a;width:8px;height:8px;border-radius:50%;border:none;opacity:0.4;"></button>
+                    </div>
+                    <div class="carousel-inner" style="border-radius:20px;">
 
-    <!-- 4. 顧客回饋 -->
-    <!-- <section id="reviews" class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="mb-5">顧客怎麼說</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="p-4 bg-white rounded shadow-sm">
-                        <p class="mb-2">"這是我吃過最好吃的草莓蛋糕，口感非常細緻，奶油完全不會油膩，下次還會再來買"</p>
-                        <footer class="blockquote-footer">林小姐</footer>
+                        <!-- 廣告 1：母親節限定 -->
+                        <div class="carousel-item active">
+                            <div style="position:relative;height:380px;overflow:hidden;">
+                                <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&q=80"
+                                     alt="母親節限定蛋糕"
+                                     style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);">
+                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 2rem 2.5rem;">
+                                    <span style="display:inline-block;background:#c4522a;color:white;font-size:0.72rem;padding:3px 12px;border-radius:20px;letter-spacing:0.1em;margin-bottom:0.7rem;width:fit-content;">母親節限定</span>
+                                    <h3 style="font-family:'Noto Serif TC',serif;color:white;font-size:1.6rem;font-weight:600;margin-bottom:0.4rem;line-height:1.3;">手工玫瑰奶油蛋糕<br>買一送一</h3>
+                                    <p style="color:rgba(255,255,255,0.85);font-size:0.88rem;font-weight:300;margin-bottom:1rem;">5月限定優惠，數量有限，立即預訂</p>
+                                    <div style="display:flex;align-items:center;gap:12px;">
+                                        <span style="color:white;font-size:1.3rem;font-family:'Noto Serif TC',serif;font-weight:600;">$880</span>
+                                        <span style="color:rgba(255,255,255,0.55);font-size:0.9rem;text-decoration:line-through;">$1,760</span>
+                                        <span style="background:rgba(255,255,255,0.2);color:white;font-size:0.78rem;padding:3px 10px;border-radius:6px;backdrop-filter:blur(4px);">5折優惠</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 廣告 2：新品上市 -->
+                        <div class="carousel-item">
+                            <div style="position:relative;height:380px;overflow:hidden;">
+                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80"
+                                     alt="新品馬卡龍"
+                                     style="width:100%;height:100%;object-fit:cover;filter:brightness(0.65);">
+                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 2rem 2.5rem;">
+                                    <span style="display:inline-block;background:#e8a030;color:white;font-size:0.72rem;padding:3px 12px;border-radius:20px;letter-spacing:0.1em;margin-bottom:0.7rem;width:fit-content;">NEW 新品上市</span>
+                                    <h3 style="font-family:'Noto Serif TC',serif;color:white;font-size:1.6rem;font-weight:600;margin-bottom:0.4rem;line-height:1.3;">法式馬卡龍禮盒<br>12入精裝版</h3>
+                                    <p style="color:rgba(255,255,255,0.85);font-size:0.88rem;font-weight:300;margin-bottom:1rem;">六種口味任選，精美禮盒包裝，送禮自用皆宜</p>
+                                    <div style="display:flex;align-items:center;gap:12px;">
+                                        <span style="color:white;font-size:1.3rem;font-family:'Noto Serif TC',serif;font-weight:600;">$680</span>
+                                        <span style="background:rgba(255,255,255,0.2);color:white;font-size:0.78rem;padding:3px 10px;border-radius:6px;backdrop-filter:blur(4px);">限量 50 盒</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 廣告 3：會員優惠 -->
+                        <div class="carousel-item">
+                            <div style="position:relative;height:380px;overflow:hidden;">
+                                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80"
+                                     alt="會員優惠蛋糕"
+                                     style="width:100%;height:100%;object-fit:cover;filter:brightness(0.6);">
+                                <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 2rem 2.5rem;">
+                                    <span style="display:inline-block;background:#7a3fa0;color:white;font-size:0.72rem;padding:3px 12px;border-radius:20px;letter-spacing:0.1em;margin-bottom:0.7rem;width:fit-content;">會員專屬</span>
+                                    <h3 style="font-family:'Noto Serif TC',serif;color:white;font-size:1.6rem;font-weight:600;margin-bottom:0.4rem;line-height:1.3;">生日當月蛋糕<br>全品項 85 折</h3>
+                                    <p style="color:rgba(255,255,255,0.85);font-size:0.88rem;font-weight:300;margin-bottom:1rem;">加入會員立即享有，每月驚喜優惠不間斷</p>
+                                    <div style="display:flex;align-items:center;gap:12px;">
+                                        <span style="color:white;font-size:1.1rem;font-family:'Noto Serif TC',serif;font-weight:600;">立即加入會員</span>
+                                        <span style="color:rgba(255,255,255,0.7);font-size:1rem;">→</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="p-4 bg-white rounded shadow-sm">
-                        <p class="mb-2">"送貨速度很快，包裝也非常完整，送貨的陳大偉先生態度親切。"</p>
-                        <footer class="blockquote-footer">張先生</footer>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="p-4 bg-white rounded shadow-sm">
-                        <p class="mb-2">"巧克力味道很濃但不甜膩，大人小孩都很喜歡，只是下單的網頁操作卡住過幾次才成功下單，若是能改善會更好。"</p>
-                        <footer class="blockquote-footer">王媽媽</footer>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <section id="reviews" class="py-5 bg-light">
-    <div class="container text-center">
-        <h2 class="mb-5">顧客怎麼說</h2>
-        <div class="row justify-content-center"> <!-- 讓內容置中 -->
-            <div class="col-md-3 mb-4"> <!-- 將 col-md-4 改成 3，格子會變窄一點 -->
-                <div class="p-3 bg-white rounded shadow-sm"> <!-- p-4 改成 p-3 -->
-                    <p class="mb-1 small text-dark">"這是我吃過最好吃的草莓蛋糕，口感非常細緻，奶油完全不會油膩，下次還會再來買"</p>
-                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">林小姐</footer>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <p class="mb-1 small text-dark">"送貨速度很快，包裝也非常完整，送貨的陳大偉先生態度親切。"</p>
-                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">張先生</footer>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="p-3 bg-white rounded shadow-sm">
-                    <p class="mb-1 small text-dark">"蛋糕很好吃，只是下單的網頁操作卡住過幾次才成功下單，若是能改善會更好。"</p>
-                    <footer class="blockquote-footer mt-1" style="font-size: 0.8rem;">王媽媽</footer>
+
+                    <!-- 左右控制箭頭 -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"
+                            style="width:40px;opacity:1;">
+                        <span style="background:rgba(255,255,255,0.3);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 2L4 6L8 10" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"
+                            style="width:40px;opacity:1;">
+                        <span style="background:rgba(255,255,255,0.3);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2L8 6L4 10" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- ===== 3. 產品介紹 ===== -->
+<section id="products">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-eyebrow">Our Cakes</p>
+            <h2 class="section-title">精選蛋糕</h2>
+            <p class="text-muted mt-2" style="font-size:0.95rem;font-weight:300;">每日新鮮現做，限量供應</p>
+        </div>
+        <div class="row g-4">
 
-    <!-- 5. Footer 公司資訊 & 地圖 -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <h5 class="mb-3">Sweet Time 甜點工作室</h5>
-                    <p>📍 地址：台北市永和區 123 號</p>
-                    <p>📞 電話：(02) 2345-6789</p>
-                    <p>✉️ 信箱：service@sweettime.com</p>
-                    <p>🕒 營業時間：週一至週日 11:00 - 20:00</p>
-                </div>
-                <div class="col-lg-6">
-                    <!-- Google Map 嵌入 (範例位置) -->
-                    <div class="ratio ratio-16x9">   
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14463.116567928604!2d121.50367036906769!3d25.00761959147419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9c2a0416b75%3A0x68f25a2cb5b9e3a4!2zMjM05paw5YyX5biC5rC45ZKM5Yy6!5e0!3m2!1szh-CN!2stw!4v1776394220709!5m2!1szh-CN!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- 蛋糕 1 -->
+            <div class="col-md-4">
+                <div class="card cake-card h-100 border-0">
+                    <div class="cake-img">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" alt="草莓巧克力蛋糕">
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <span class="cake-tag">人氣首選</span>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h5 class="card-title mb-0" style="font-size:1rem;font-weight:500;">草莓巧克力混合風</h5>
+                            <span class="cake-price">$480</span>
+                        </div>
+                        <div class="star-row my-2">★★★★★ <span style="color:#aaa;font-size:0.78rem;margin-left:4px;">(128)</span></div>
+                        <p class="card-text mt-1 mb-4" style="font-size:0.88rem;color:#7a6a62;font-weight:300;line-height:1.7;">
+                            採用 70% 苦甜巧克力，口感紮實層次豐富，搭配新鮮草莓果餡。
+                        </p>
+                        <button class="btn-cart mt-auto">加入購物車</button>
                     </div>
                 </div>
             </div>
-            <hr class="mt-4 border-secondary">
-            <p class="text-center mb-0">© 2024 Sweet Time. All Rights Reserved.</p>
-        </div>
-    </footer>
 
-    <!-- 引入 Bootstrap JS (導覽列折疊功能需要) -->
-    <script src="https://jsdelivr.net"></script>
+            <!-- 蛋糕 2 -->
+            <div class="col-md-4">
+                <div class="card cake-card h-100 border-0">
+                    <div class="cake-img" style="background:#fce8ef;">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt="法式草莓鮮奶油蛋糕">
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <span class="cake-tag">季節限定</span>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h5 class="card-title mb-0" style="font-size:1rem;font-weight:500;">法式草莓鮮奶油</h5>
+                            <span class="cake-price">$520</span>
+                        </div>
+                        <div class="star-row my-2">★★★★★ <span style="color:#aaa;font-size:0.78rem;margin-left:4px;">(96)</span></div>
+                        <p class="card-text mt-1 mb-4" style="font-size:0.88rem;color:#7a6a62;font-weight:300;line-height:1.7;">
+                            當季大湖草莓搭配輕盈鮮奶油，入口即化，清爽不甜膩。
+                        </p>
+                        <button class="btn-cart mt-auto">加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 蛋糕 3 -->
+            <div class="col-md-4">
+                <div class="card cake-card h-100 border-0">
+                    <div class="cake-img" style="background:#e8edf8;">
+                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" alt="酸甜藍莓蛋糕">
+                    </div>
+                    <div class="card-body d-flex flex-column p-4">
+                        <span class="cake-tag">健康首選</span>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h5 class="card-title mb-0" style="font-size:1rem;font-weight:500;">酸甜藍莓蛋糕</h5>
+                            <span class="cake-price">$460</span>
+                        </div>
+                        <div class="star-row my-2">★★★★☆ <span style="color:#aaa;font-size:0.78rem;margin-left:4px;">(74)</span></div>
+                        <p class="card-text mt-1 mb-4" style="font-size:0.88rem;color:#7a6a62;font-weight:300;line-height:1.7;">
+                            新鮮藍莓果醬與栗子泥的完美結合，富含花青素。
+                        </p>
+                        <button class="btn-cart mt-auto">加入購物車</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== 4. 顧客回饋 ===== -->
+<section id="reviews">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-eyebrow">Reviews</p>
+            <h2 class="section-title">顧客怎麼說</h2>
+            <p class="text-muted mt-2" style="font-size:0.95rem;font-weight:300;">真實顧客回饋，值得信賴</p>
+        </div>
+        <div class="row justify-content-center g-4">
+
+            <!-- 評論 1 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">
+                        這是我吃過最好吃的草莓蛋糕，口感非常細緻，奶油完全不會油膩，下次還會再來買！
+                    </p>
+                    <div class="star-row my-3">★★★★★</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="reviewer-avatar" style="background:#fce8ef;color:#c4522a;">林</div>
+                        <div>
+                            <div class="reviewer-name">林小姐</div>
+                            <div class="reviewer-date">2024年3月</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 評論 2 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">
+                        送貨速度很快，包裝也非常完整，送貨的陳大偉先生態度親切，非常滿意這次的購物體驗！
+                    </p>
+                    <div class="star-row my-3">★★★★★</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="reviewer-avatar" style="background:#e0ebf8;color:#2a5fa0;">張</div>
+                        <div>
+                            <div class="reviewer-name">張先生</div>
+                            <div class="reviewer-date">2024年2月</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 評論 3 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">
+                        巧克力味道很濃但不甜膩，大人小孩都很喜歡。若是網頁下單體驗能再順暢一點就完美了。
+                    </p>
+                    <div class="star-row my-3">★★★★☆</div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="reviewer-avatar" style="background:#e4f0e0;color:#3a7030;">王</div>
+                        <div>
+                            <div class="reviewer-name">王媽媽</div>
+                            <div class="reviewer-date">2024年1月</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== 5. Footer ===== -->
+<footer id="footer">
+    <div class="container">
+        <div class="row g-5">
+            <!-- 左：公司資訊 -->
+            <div class="col-lg-6">
+                <h5>🍰 Sweet Time 甜點工作室</h5>
+                <div class="footer-info-item">
+                    <span class="icon">📍</span>
+                    <span>台北市永和區 123 號</span>
+                </div>
+                <div class="footer-info-item">
+                    <span class="icon">📞</span>
+                    <span>(02) 2345-6789</span>
+                </div>
+                <div class="footer-info-item">
+                    <span class="icon">✉️</span>
+                    <span>service@sweettime.com</span>
+                </div>
+                <div class="footer-info-item">
+                    <span class="icon">🕒</span>
+                    <span>週一至週日　11:00 – 20:00</span>
+                </div>
+                <div class="mt-4">
+                    <a href="#" class="social-btn">Facebook</a>
+                    <a href="#" class="social-btn">Instagram</a>
+                    <a href="#" class="social-btn">LINE 官方</a>
+                </div>
+            </div>
+            <!-- 右：地圖 -->
+            <div class="col-lg-6">
+                <div class="map-wrap ratio ratio-16x9">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14463.116567928604!2d121.50367036906769!3d25.00761959147419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9c2a0416b75%3A0x68f25a2cb5b9e3a4!2zMjM05paw5YyX5biC5rC45ZKM5Yy6!5e0!3m2!1szh-CN!2stw!4v1776394220709!5m2!1szh-CN!2stw"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <p class="copyright">© 2024 Sweet Time. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS Bundle (含 Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
